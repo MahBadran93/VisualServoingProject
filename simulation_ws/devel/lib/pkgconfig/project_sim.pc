@@ -1,0 +1,8 @@
+prefix=/home/user/simulation_ws/devel
+
+Name: project_sim
+Description: Description of project_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 

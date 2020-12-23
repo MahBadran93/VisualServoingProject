@@ -1,0 +1,2 @@
+master/artags_opencv_course:master/project:master/project_sim:master/unit_2_sim:master/unit_3_sim:master/unit_4_sim:master/unit_5_sim:rosbot_description/src/rosbot_description:rosbot_description/src/rosbot_gazebo:rosbot_description/src/rosbot_navigation:spawn_robot_tools/spawn_robot_tools_pkg
+-DCATKIN_DEVEL_PREFIX=/home/user/simulation_ws/devel -DCMAKE_INSTALL_PREFIX=/home/user/simulation_ws/install -G Unix Makefiles

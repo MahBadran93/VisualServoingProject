@@ -1,0 +1,8 @@
+prefix=/home/user/simulation_ws/install
+
+Name: unit_4_sim
+Description: Description of unit_4_sim
+Version: 0.0.0
+Cflags: 
+Libs: -L${prefix}/lib 
+Requires: 
