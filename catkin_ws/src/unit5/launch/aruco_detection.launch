@@ -1,0 +1,4 @@
+<launch>
+  <node pkg="unit5" name="aruco_detection" type="aruco_detection.py" clear_params="true" output="screen"/>
+
+</launch>
