@@ -63,7 +63,7 @@ public:
 VS::VS(int argc, char **argv) {
   // init_vs();
 
-  subPose_ = nh_.subscribe("/visp_auto_tracker/object_position", 1000,
+  subPose_ = nh_.subscribe("/object_position", 1000,
                            &VS::poseCallback, this);
   subStatus_ = nh_.subscribe("/visp_auto_tracker/status", 1000,
                              &VS::statusCallback, this);
@@ -72,7 +72,7 @@ VS::VS(int argc, char **argv) {
   // paramenter. The callback function will be called only one time.
   sub_cam_info = nh_.subscribe("/camera_info", 1000, &VS::CameraInfoCb, this);
 
-  depth = 0.4;
+  depth = 0.15;
   lambda = 1.;
   valid_pose = false;
   valid_pose_prev = false;
@@ -125,13 +125,16 @@ void VS::init_vs() {
 
   // Add the feature
   task.addFeature(s_Z, s_Zd);
+  std::cout << "End init vs."<<std::endl;
 }
 
 void VS::statusCallback(const std_msgs::Int8ConstPtr &msg) {
   if (msg->data == 3)
     valid_pose = true;
+    std::cout << "Valid pose true."<<std::endl;
   else
     valid_pose = false;
+    std::cout << "Valid pose false."<<std::endl;
 }
 
 void VS::poseCallback(const geometry_msgs::PoseStampedConstPtr &msg) {
@@ -146,7 +149,7 @@ void VS::poseCallback(const geometry_msgs::PoseStampedConstPtr &msg) {
   geometry_msgs::Twist out_cmd_vel;
   try {
     t_start_loop = vpTime::measureTimeMs();
-
+    std::cout << "bao" << std::endl;
     std::ostringstream strs;
     strs << "Receive a new pose" << std::endl;
     std::string str;
