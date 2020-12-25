@@ -67,12 +67,14 @@ VS::VS(int argc, char **argv) {
                            &VS::poseCallback, this);
   subStatus_ = nh_.subscribe("/visp_auto_tracker/status", 1000,
                              &VS::statusCallback, this);
-  pubTwist_ = nh_.advertise<geometry_msgs::Twist>("vs/pioneer/cmd_vel", 1000);
+  // pubTwist_ = nh_.advertise<geometry_msgs::Twist>("vs/pioneer/cmd_vel", 1000);
+  pubTwist_ = nh_.advertise<geometry_msgs::Twist>("/cmd_vel", 1000);
+
   // Subscribe to the topic Camera info in order to receive the camera
   // paramenter. The callback function will be called only one time.
   sub_cam_info = nh_.subscribe("/camera_info", 1000, &VS::CameraInfoCb, this);
 
-  depth = 0.15;
+  depth = 0.05;
   lambda = 1.;
   valid_pose = false;
   valid_pose_prev = false;
@@ -94,7 +96,7 @@ VS::VS(int argc, char **argv) {
 void VS::init_vs() {
 
   // cam.initPersProjWithoutDistortion(800, 795, 320, 216);
-
+  std::cout << "Start init vs."<<std::endl;
   lambda_adapt.initStandard(3, 0.2, 40);
 
   task.setServo(vpServo::EYEINHAND_L_cVe_eJe);
@@ -130,11 +132,13 @@ void VS::init_vs() {
 
 void VS::statusCallback(const std_msgs::Int8ConstPtr &msg) {
   if (msg->data == 3)
+  {
     valid_pose = true;
-    std::cout << "Valid pose true."<<std::endl;
+  }
   else
+  {
     valid_pose = false;
-    std::cout << "Valid pose false."<<std::endl;
+  }
 }
 
 void VS::poseCallback(const geometry_msgs::PoseStampedConstPtr &msg) {
@@ -149,7 +153,6 @@ void VS::poseCallback(const geometry_msgs::PoseStampedConstPtr &msg) {
   geometry_msgs::Twist out_cmd_vel;
   try {
     t_start_loop = vpTime::measureTimeMs();
-    std::cout << "bao" << std::endl;
     std::ostringstream strs;
     strs << "Receive a new pose" << std::endl;
     std::string str;
@@ -252,13 +255,19 @@ void VS::CameraInfoCb(const sensor_msgs::CameraInfo &msg) {
   this->sub_cam_info.shutdown();
 
   Stream_info_camera = 1;
+  std::cout << "Start init vs 3."<<std::endl;
   init_vs();
 }
 
 int main(int argc, char **argv) {
-  ros::init(argc, argv, "pioneer");
+
+  ros::init(argc, argv, "turtlebot3");
+  
+  std::cout << "Start init vs1."<<std::endl;
 
   VS vs(argc, argv);
+
+  std::cout << "Start init vs2."<<std::endl;
 
   ros::spin();
 }

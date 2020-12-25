@@ -1,12 +1,5 @@
 <launch>
-    <param name="/camera_prefix" type="string" value="/" />
 
-    <!-- Launch gazebo FOR SIMULATION -->
-    <arg name="base"      value="$(optenv TURTLEBOT_BASE kobuki)"/> <!-- create, roomba -->
-    <arg name="stacks"    value="$(optenv TURTLEBOT_STACKS hexagons)"/>  <!-- circles, hexagons -->
-    <arg name="gui" default="true"/>
-    <arg name="3d_sensor" value="$(optenv TURTLEBOT_3D_SENSOR kinect)"/>  <!-- kinect, asus_xtion_pro --> 
-    <arg name="world_name" default=""/>
 
     <include file = "$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">   
         <arg name = "world_name" value = "$(find vs_proj)/qr_world.world"/>

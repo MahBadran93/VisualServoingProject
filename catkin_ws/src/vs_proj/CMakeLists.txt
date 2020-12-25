@@ -214,3 +214,9 @@ add_dependencies(vs ${vs_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
 target_link_libraries(vs
    ${catkin_LIBRARIES}
  )
+
+add_executable(vs1 src/vs1.cpp)
+add_dependencies(vs1 ${vs1_EXPORTED_TARGETS} ${catkin_EXPORTED_TARGETS})
+target_link_libraries(vs1
+   ${catkin_LIBRARIES}
+ )
