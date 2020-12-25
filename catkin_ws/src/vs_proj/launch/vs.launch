@@ -18,7 +18,6 @@
 	<!-- Launch the visual servoing node -->
 	<node name="visualServoNode" pkg="vs_proj" type="vs" output="screen"  respawn="true">
         <remap from="/object_position" to="/visp_auto_tracker/object_position" />
-        <remap from="/vs/pioneer/cmd_vel" to="/mobile_base/commands/velocity" />
         <remap from="/camera_info" to="/camera/rgb/camera_info"/>
     </node>	
 

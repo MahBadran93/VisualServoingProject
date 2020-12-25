@@ -82,7 +82,6 @@ VS::VS(int argc, char **argv) {
   Stream_info_camera = 0;
 
   Z = Zd = depth;
-
   v.resize(2);
   vi.resize(2);
   v = 0;
@@ -95,7 +94,6 @@ VS::VS(int argc, char **argv) {
 
 void VS::init_vs() {
 
-  // cam.initPersProjWithoutDistortion(800, 795, 320, 216);
   std::cout << "Start init vs."<<std::endl;
   lambda_adapt.initStandard(3, 0.2, 40);
 
@@ -103,7 +101,7 @@ void VS::init_vs() {
   task.setInteractionMatrixType(vpServo::DESIRED, vpServo::PSEUDO_INVERSE);
   task.setLambda(lambda_adapt);
 
-  vpPioneer robot; // Pas top ! devrait etre vpRobotPioneer
+  vpPioneer robot; 
   vpVelocityTwistMatrix cVe = robot.get_cVe();
   vpMatrix eJe = robot.get_eJe();
   task.set_cVe(cVe);
