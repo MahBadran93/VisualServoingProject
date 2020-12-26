@@ -51,4 +51,12 @@ For task two, we tried to make it work using the online platform but we faced ma
        <p align="center">
         https://www.loom.com/share/e3fb418493244c50b8359afff7d42a46
        </p> 
+     - As we discussed before, we tried to use **Ros Development Studio** in the construct platform to be able to easily change the Robot pose. To import the map (we choose to import the map provided by the OpenCv course unit 5) two packages needed, [opencv_course_sims](https://bitbucket.org/theconstructcore/opencv_course_sims/src/master/) and **rosbot_husarion** where they include the map files (models, world, urdf, launch). Click  <a href="https://app.theconstructsim.com/#/l/c8d160f/"> Here </a> to go to the project page in **ROS Development Studio** (you need to login to the construct platform).
+     - After launching the project in **ROS Development Studio**, you can customize your screen layout and open the terminal and gazebo.
+     - To run the code you need to import the map by typing **roslaunch unit_5_sim course_simulation_5.launch** in the terminal and wait till you see the map fully rendered in the gazebo application.
+     - video demonstration below: 
+       <p align="center">
+        https://www.loom.com/share/e3fb418493244c50b8359afff7d42a46
+       </p>
+     - Using the map from the opencv course and importing it in **ROS Development Studio** for the follow line task was good interm of the ability to customize our maps and add models and easily change its positions but the problem is the stability and the rendered map can sometimes be different from the map in the course where it leads to some performance issues. For example, sometimes it can be noticed that the rendered map is more dark and affect the quality of the images observed by the Robot which affect the algorithm performance.
 
