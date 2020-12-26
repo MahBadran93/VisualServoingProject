@@ -26,7 +26,15 @@ For task two, we tried to make it work using the online platform but we faced ma
 <h1 align="center">  </h1> <br>
 
 ## Implementation 
-- Task 1: 
+- **Dependencies:** 
+  - The Constructsim platform 
+  - ROS Melodic
+  - Python
+  - C++ 
+  - OpenCV 
+  - VISP 
+  
+- **Task 1: Follow Line:** 
   - For this task we used the construct platform to implement. The code is tested on different maps which are provided by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a>  and the <a href="https://app.theconstructsim.com/#/Desktop"> ROS Perception (unit3) </a> courses in the construct platform. <br>
         <p align = "center">
         <img  src = "Demonstration Resources/followlineMapTurtleBot.png" width=500> <br>
