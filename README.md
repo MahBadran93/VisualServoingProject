@@ -42,9 +42,13 @@ For task two, we tried to make it work using the online platform but we faced ma
 
    - **To run the code:** 
      - In [catkin_ws](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws) workspace, under [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src) folder we created a package called [followline](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline). This package is responsible for the line follow task. 
-     - [follow_line.py](https://github.com/MahBadran93/VisualServoingProject/blob/main/catkin_ws/src/followline/src/follow_line.py) file has been created   inside the [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline/src) in the [followline](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline)  
-     - You can download the [followline](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline) package and import it into your **catkin_ws** workspace or you can go directly to the construct platform (Perception course unit 3) to test the code on the same map then add the **followline** package to their **catkin_ws** workspace **src** folder. 
+     - [follow_line.py](https://github.com/MahBadran93/VisualServoingProject/blob/main/catkin_ws/src/followline/src/follow_line.py) file has been created   inside the [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline/src) folder in the [followline](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline) package.
+     - You can download the [followline](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/followline) package and import it into your **catkin_ws** workspace or you can go directly to the construct platform (Perception course unit 3) to test the code on the same map then add the **followline** package to **src** folder in their **catkin_ws** workspace. 
      - After that, you need to build the workspace by changing the path to **catkin_ws** directory and run the **catkin_make** command.
      - After the building is done, type **source/devel/setup.bash** command in the terminal.
-     - Now, type **rosrun followline follow_line.py** and the robot should start following the line.  
+     - Now, type **rosrun followline follow_line.py** and the robot should start following the line. 
+     - Video demonstration below: 
+       <p align="center">
+        https://www.loom.com/share/e3fb418493244c50b8359afff7d42a46
+       </p> 
 
