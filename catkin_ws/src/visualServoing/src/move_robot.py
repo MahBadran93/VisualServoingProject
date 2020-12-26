@@ -3,7 +3,7 @@ import rospy
 from geometry_msgs.msg import Twist
 
 
-class MoveKobuki(object):
+class MoveRobot(object):
 
     def __init__(self):
     
@@ -26,7 +26,7 @@ def main():
     rospy.init_node('move_robot_node', anonymous=True)
     
     
-    movekobuki_object = MoveKobuki()
+    moveRobot_object = MoveRobot()
     twist_object = Twist()
     # Make it start turning
     twist_object.angular.z = 0.5
@@ -37,14 +37,14 @@ def main():
     ctrl_c = False
     def shutdownhook():
         # works better than the rospy.is_shut_down()
-        movekobuki_object.clean_class()
+        moveRobot_object.clean_class()
         rospy.loginfo("shutdown time!")
         ctrl_c = True
     
     rospy.on_shutdown(shutdownhook)
     
     while not ctrl_c:
-        movekobuki_object.move_robot(twist_object)
+        moveRobot_object.move_robot(twist_object)
         rate.sleep()
 
     

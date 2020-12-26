@@ -2,7 +2,7 @@
 
 <launch>
 
-    <arg name="x" default="2.37" />
+    <arg name="x" default="2.41" />
     <arg name="y" default="-1.1" />
     <arg name="z" default="0.5" />
     <arg name="roll" default="0.0" />
