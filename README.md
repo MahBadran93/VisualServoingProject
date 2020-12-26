@@ -33,8 +33,8 @@ For task two, we tried to make it work using the online platform but we faced ma
   - C++ 
   - OpenCV 
   - VISP 
-  
-- **Task 1: Follow Line:** 
+
+- **Task 1 Follow Line** 
   - For this task we used the construct platform to implement. The code is tested on different maps which are provided by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a>  and the <a href="https://app.theconstructsim.com/#/Desktop"> ROS Perception (unit3) </a> courses in the construct platform. <br>
         <p align = "center">
         <img  src = "Demonstration Resources/followlineMapTurtleBot.png" width=500> <br>
@@ -68,5 +68,7 @@ For task two, we tried to make it work using the online platform but we faced ma
        <p align="center">
         https://www.loom.com/share/33ca77c452934220803740d948a3f46c
        </p>
-     - Using the map from the opencv course and importing it in **ROS Development Studio** for the follow line task was good interm of the ability to customize our maps and add models and easily change their positions but the problem is the stability and the rendered map can sometimes be different from the map in the course where it leads to some performance issues. For example, sometimes it can be noticed that the rendered map is more dark and affect the quality of the images observed by the Robot which affect the algorithm performance.
+     - Using the map from the opencv course and importing it in **ROS Development Studio** for the follow line task was good interm of the ability to customize our maps and add models and easily change their positions but the problem is the stability and the rendered map can sometimes be different from the map in the course where it leads to some performance issues. For example, sometimes it can be noticed that the rendered map is more dark and affect the quality of the images observed by the Robot which affect the algorithm performance. 
+
+-  **Task2 Parking**
 
