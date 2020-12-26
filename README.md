@@ -5,7 +5,6 @@
 University Of Burgundy
   <p align="center">
     <a href="https://www.vibot.org/"> <img src = "https://www.vibot.org/uploads/2/3/5/8/2358523/696297.png" width=60> </a>
-      <img src = "resources/ub.png" width=70>
   </p>
 </p>
 <h3 align="center">                       
@@ -20,8 +19,8 @@ Students:
 
 ## Introduction
 This repository includes the code necessery to implement the visual servoing reltated tasks. The first task is to allow the robot to follow a specific line where the second task is to enable the robot to stop and park when detecting a QR and AR tags. To develop the project we faced many challenges regarding the environment setup since our devices can't handle installing and working with Gazebo simulation. So, we have another solution like using the online platform, **The Constructsim**. <br>
-Another problem comes with the online platform which is the stability and the constraints of setting up a map that works for our tasks.<br>
-Luckily, we were able to complete the following line task using the online platform. <br>
+Another problem comes with the online platform which is the stability and the constraints of setting up a map that works for our tasks.
+Luckily, we were able to complete the line follow task using the online platform. <br>
 For task two, we tried to make it work using the online platform but we faced many problems regarding the map and importing the necessery and required models to complete the task like Qr code. So we decided to use local devices and install gazebo for task two.
 
 <h1 align="center">  </h1> <br>
@@ -30,7 +29,7 @@ For task two, we tried to make it work using the online platform but we faced ma
 - Task 1: 
   - For this task we used the construct platform to implement. The code is tested on different maps which are provided by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a>  and the <a href="https://app.theconstructsim.com/#/Desktop"> ROS Perception (unit3) </a> courses in the construct platform. <br>
   Also, because the courses in the Construct platform provide a static environment setup where it is hard to control the Robot, mesh models pose and orientation(we need that because it is important for us to easily move the robot to different poses to check that our algorithm is working  and the the Robot can detect and follow the line from different poses).<br>
-   We tried to work with  **Ros Development Studio** whicn is an online IDE created by the construct to create our own projects and it is easier and more flexible to make some modification on the map simulation. So our goal here is to import the specific map created by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a> course to our project in Ros Development Studio which allows for more flexibility in controling the models in the map. But doing that was not easy and created a lot of problems for us, like the models some times becomes invisible and can't be seen in the map simulation and for some models we can only see the bounding boxes without the meshes. But at the end we were able to manage it and import the map. 
+   We tried to work with  **Ros Development Studio** whicn is an online IDE created by the construct to create our own projects and provide robotics environment where it is easier and more flexible to make some modification on the map simulation. So our goal here is to import the specific map created by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a> course to our project in Ros Development Studio which allows for more flexibility in controling the models in the map. But doing that was not easy and created a lot of problems for us, like the models some times becomes invisible and can't be seen in the map simulation and for some models we can only see the bounding boxes without the meshes. But at the end we were able to manage it and import the map. 
    The implementation of this task can be 
    To run the code, you need to use the construct platform 
 
