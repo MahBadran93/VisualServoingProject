@@ -28,6 +28,15 @@ For task two, we tried to make it work using the online platform but we faced ma
 ## Implementation 
 - Task 1: 
   - For this task we used the construct platform to implement. The code is tested on different maps which are provided by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a>  and the <a href="https://app.theconstructsim.com/#/Desktop"> ROS Perception (unit3) </a> courses in the construct platform. <br>
+        <p align = "center">
+        <img  src = "Demonstration Resources/followlineMapTurtleBot.png" width=500> <br>
+        <em> The map provided by the Perception course(unit3) in the construct platform</em>
+        </p>
+        <p align = "center">
+        <img  src = "Demonstration Resources/streetMapRosBot.png" width=400> <br>
+        <em> The map provided by the OpenCv course(unit5) in the construct platform</em>
+        </p>
+
   Also, because the courses in the Construct platform provide a static environment setup where it is hard to control the Robot, mesh models pose and orientation(we need that because it is important for us to easily move the robot to different poses to check that our algorithm is working  and the the Robot can detect and follow the line from different poses).<br>
    We tried to work with  **Ros Development Studio** whicn is an online IDE created by the construct to create our own projects and provide robotics environment where it is easier and more flexible to make some modification on the map simulation. So our goal here is to import the specific map created by the <a href="https://app.theconstructsim.com/#/Desktop"> OpenCV Basics for Robotics(Unit5)</a> course to our project in Ros Development Studio which allows for more flexibility in controling the models in the map. But doing that was not easy and created a lot of problems for us, like the models some times becomes invisible and can't be seen in the map simulation and for some models we can only see the bounding boxes without the meshes. But at the end we were able to manage it and import the map. 
    The implementation of this task can be 
