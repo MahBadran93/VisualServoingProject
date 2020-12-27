@@ -69,6 +69,26 @@ For task two, we tried to make it work using the online platform but we faced ma
        </p>
      - Using the map from the opencv course and importing it in **ROS Development Studio** for the follow line task was good interm of the ability to customize our maps and add models and easily change their positions but the problem is the stability and the rendered map can sometimes be different from the map in the course where it leads to some performance issues. For example, sometimes it can be noticed that the rendered map is more dark and affect the quality of the images observed by the Robot which affect the algorithm performance. 
 
--  **Task2 Parking**
-    - For task 2 it was not possible for us to set up the required custom map using the construct platform. To implement this task we need a custom map with a QR code included. We created QR model using blender modeling software but to import it in the the construct gazebo environment created problems in the map and the model was not fully rendered so we decided to work on our local machines and install ROS and Gazebo. 
+-  **Task2 Parking** <br>
+    For task 2 it was not possible for us to set up the required custom map using the construct platform. To implement this task we need a custom map with a QR code included. We created QR model using blender modeling software but to import it in the the construct gazebo environment created problems in the map and the model was not fully rendered so we decided to work on our local machines and install ROS and Gazebo. <br> 
+    - **How to run:** 
+      - We created a package called [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) which will handle the parking task. In this package [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/src)  folder we created [vs.cpp](https://github.com/MahBadran93/VisualServoingProject/blob/main/catkin_ws/src/vs_proj/src/vs.cpp) file where we implemented the parking task.  
+      - To setup the environment and run the code in your machine, you need to have ""ROS Melodic"" installed in your machine. We also used the turtlebot3 waffle model and world so you need to have some turtlebot3 packages installed and all these packages are already installed and in the [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/src) folder of [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) package. So what you need is to install the files inside this [src](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/src) folder and add them to your **src** folder in your **catkin_ws** working space. Then **build** and **source** your **catkin_ws** working space.
+      - After that, You need to add Qr tag model to the world and is done by installing the [marker0](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/marker0) folder in our [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) package and add it to the **models** folder in your **gazebo** folder.
+      - Now everything is ready to run the code. First,  you need to launch the **turtlebot3_world** and you can do that by typing **roslaunch turtlebot3_gazebo turtlebot3_world.launch** in the terminal. After the world is rendered in gazebo you go to the **Insert** tab and drag the **Marker0** model infront of the robot in the world. 
+      <p align = "center">
+        <img  src = "Demonstration Resources/options_turtlebotWorld.png" width=200> <br>
+        <em> Gazebo Insert tab where you can find the Marker0 model you add it to drag it into the world</em>
+        </p>
+        <p align = "center">
+        <img  src = "Demonstration Resources/turtlebot3_world.png" width=400> <br>
+        <em> Turtlebot 3 World</em>
+        </p>
+
+
+      - Now you need to launch the [vs.launch](https://github.com/MahBadran93/VisualServoingProject/blob/main/catkin_ws/src/vs_proj/launch/vs.launch) file in the [launch](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/launch) folder of the [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) package by typing **roslaunch  vs_proj vs.launch** in the terminal.
+      
+
+    
+
 
