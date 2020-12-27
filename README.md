@@ -77,8 +77,9 @@ For task two, we tried to make it work using the online platform but we faced ma
       - After that, You need to add Qr tag model to the world and is done by installing the [marker0](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/marker0) folder in our [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) package and add it to the **models** folder in your **gazebo** folder.
       - Now everything is ready to run the code. First,  you need to launch the **turtlebot3_world** and you can do that by typing **roslaunch turtlebot3_gazebo turtlebot3_world.launch** in the terminal. After the world is rendered in gazebo you go to the **Insert** tab and drag the **Marker0** model infront of the robot in the world. 
       <p align = "center">
-        <img  src = "Demonstration Resources/options_turtlebotWorld.png" width=200> <br>
-        <em> Gazebo Insert tab where you can find the Marker0 model you add it to drag it into the world</em>
+        <img  src = "Demonstration Resources/options_turtlebotWorld.png" width=200> 
+         <img  src = "catkin_ws/src/vs_proj/marker0/materials/textures/Marker0.png" width=100> <br>
+        <em> In the left is the Gazebo Insert tab where you can find the Marker0 model you add it to drag it into the world and in the right image you can see the Marker0 model</em>
         </p>
         <p align = "center">
         <img  src = "Demonstration Resources/turtlebot3_world.png" width=400> <br>
@@ -87,8 +88,10 @@ For task two, we tried to make it work using the online platform but we faced ma
 
 
       - Now you need to launch the [vs.launch](https://github.com/MahBadran93/VisualServoingProject/blob/main/catkin_ws/src/vs_proj/launch/vs.launch) file in the [launch](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj/launch) folder of the [vs_proj](https://github.com/MahBadran93/VisualServoingProject/tree/main/catkin_ws/src/vs_proj) package by typing **roslaunch  vs_proj vs.launch** in the terminal.
-      
-
+      - Video demonstration below: 
+        <p align="center">
+         https://www.loom.com/share/4f69c94907ab4e16b4684f05f108281b
+        </p>
     
 
 
