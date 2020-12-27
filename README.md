@@ -18,7 +18,7 @@ Students:
 <h1 align="center">  </h1> <br>
 
 ## Introduction
-This repository includes the code necessery to implement the visual servoing reltated tasks. The first task is to allow the robot to follow a specific line where the second task is to enable the robot to stop and park when detecting a QR or AR tags. To develop the project we faced many challenges regarding the environment setup since our devices can't handle installing and working with Gazebo simulation. So, we had another solution like using the online platform, **The Constructsim**. <br>
+This repository includes the code necessery to implement the visual servoing reltated tasks. The first task is to allow the robot to follow a specific line where the second task is to enable the robot to stop and park when detecting a QR tag. To develop the project we faced many challenges regarding the environment setup since our devices can't handle installing and working with Gazebo simulation. So, we had another solution like using the online platform, **The Constructsim**. <br>
 Other problems come with the online platform which is the stability and the constraints of setting up a map that works for our tasks.
 Luckily, we were able to complete the line follow task using the online platform. <br>
 For task two, we tried to make it work using the online platform but we faced many problems regarding the map and importing the necessery and required models to complete the task like Qr code. So we decided to use local devices and install gazebo for task two.
@@ -94,6 +94,11 @@ For task two, we tried to make it work using the online platform but we faced ma
         <p align="center">
          https://www.loom.com/share/4f69c94907ab4e16b4684f05f108281b
         </p>
+      - We tested the parking on another map with rosbot robot: 
+        <p align="center">
+         https://www.loom.com/share/c799fd210d9442be976f0a9e7bee650f
+        </p>
+
     
 
 
