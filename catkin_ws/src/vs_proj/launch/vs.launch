@@ -1,10 +1,6 @@
 <launch>
 
 
-    <include file = "$(find turtlebot3_gazebo)/launch/turtlebot3_empty_world.launch">   
-        <arg name = "world_name" value = "$(find vs_proj)/qr_world.world"/>
-    </include>
-
     <!-- Launch the tracking node -->
     <node pkg="visp_auto_tracker" type="visp_auto_tracker" name="visp_auto_tracker">
         <param name="model_path" type="string" value="$(find visp_auto_tracker)/models"/>
