@@ -1,0 +1,2839 @@
+#LyX 2.3 created this file. For more info see http://www.lyx.org/
+\lyxformat 544
+\begin_document
+\begin_header
+\save_transient_properties true
+\origin unavailable
+\textclass report
+\use_default_options true
+\maintain_unincluded_children false
+\language english
+\language_package default
+\inputencoding auto
+\fontencoding global
+\font_roman "default" "default"
+\font_sans "default" "default"
+\font_typewriter "default" "default"
+\font_math "auto" "auto"
+\font_default_family default
+\use_non_tex_fonts false
+\font_sc false
+\font_osf false
+\font_sf_scale 100 100
+\font_tt_scale 100 100
+\use_microtype false
+\use_dash_ligatures true
+\graphics default
+\default_output_format default
+\output_sync 0
+\bibtex_command default
+\index_command default
+\float_placement H
+\paperfontsize default
+\spacing single
+\use_hyperref false
+\papersize default
+\use_geometry false
+\use_package amsmath 1
+\use_package amssymb 1
+\use_package cancel 1
+\use_package esint 1
+\use_package mathdots 1
+\use_package mathtools 1
+\use_package mhchem 1
+\use_package stackrel 1
+\use_package stmaryrd 1
+\use_package undertilde 1
+\cite_engine basic
+\cite_engine_type default
+\biblio_style plain
+\use_bibtopic false
+\use_indices false
+\paperorientation portrait
+\suppress_date false
+\justification true
+\use_refstyle 1
+\use_minted 0
+\index Index
+\shortcut idx
+\color #008000
+\end_index
+\secnumdepth 3
+\tocdepth 3
+\paragraph_separation indent
+\paragraph_indentation default
+\is_math_indent 0
+\math_numbering_side default
+\quotes_style english
+\dynamic_quotes 0
+\papercolumns 1
+\papersides 1
+\paperpagestyle default
+\tracking_changes false
+\output_changes false
+\html_math_output 0
+\html_css_as_file 0
+\html_be_strict false
+\end_header
+
+\begin_body
+
+\begin_layout Title
+Visual Servoing Project
+\end_layout
+
+\begin_layout Author
+Mahmoud Badran, Thien Bao Bui and Muhammad Arsalan Khawaja
+\end_layout
+
+\begin_layout Abstract
+Visual servoing is one of the most important and growing field of Robotics
+ and Computer Vision.This report provides a detailed explanation and implementati
+on for the problem of Line following of robot and parking of robot using
+ QR code as a parking sign.
+ The report starts with the brief introduction and establishes the basic
+ concepts of Visual Servoing used in this project to facilitate and prepare
+ the reader for implementation part.
+ The implementation has been carried out on 'The Construct' platform and
+ local machine.
+ The project has been experimented and supporting visuals and data are attached
+ in the Evaluation part.
+ In order to facilitate further detailed analysis, a GitHub repository has
+ been prepared with proper documentation for executing and implementing
+ the Visual Servoing tasks for Robot.
+ Click 
+\series bold
+
+\begin_inset CommandInset href
+LatexCommand href
+name "here"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+
+\series default
+ to navigate to 
+\begin_inset CommandInset href
+LatexCommand href
+name "GitHub repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset toc
+LatexCommand tableofcontents
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Introduction
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Introduction"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+A vision-based control system depends on continuous measurement of the target
+ and the robot using vision.
+ It creates a feedback signal and then moves the robot until the visually
+ observed error between the robot and the target is zero 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "corke2017robotics"
+literal "false"
+
+\end_inset
+
+.
+ The advantage of vision based control is the continuous measurement and
+ feedback which provides great robustness with respect to any errors in
+ the system.
+ The Visual Servoing as described by Peter Corke in 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "corke2017robotics"
+literal "false"
+
+\end_inset
+
+ is defined as:
+\end_layout
+
+\begin_layout Quotation
+The task in Visual Servoing is to control the pose of the robot’s end-effector,
+ relative to the goal, using visual features extracted from an image of
+ the goal object.
+\end_layout
+
+\begin_layout Standard
+This section establishes the basics of Visual Servoing in order to be able
+ to understand the visual servoing project.
+ The mathematics for Position based Visual Servoing (PBVS) has been summarized.
+ The different type of robots have been introduced before diving deep into
+ the project.
+ The chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Project-Management"
+
+\end_inset
+
+ describes the methodology and management of the project.
+ A
+\begin_inset CommandInset href
+LatexCommand href
+name " GitHub repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+ has been created in order to understand the project better and focuses
+ on implementation and execution of code and environment.
+ The chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Implementation"
+
+\end_inset
+
+ discusses the implementation of the tasks for the project.
+ It discusses the approaches and methodology for the execution of the project.
+ The chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Experimentation-and-Evaluation"
+
+\end_inset
+
+ provides a detail analysis and evaluation of the project through rigorous
+ and extensive experimentation.
+ Finally the last chapter 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Conclusion-and-Reccomendations"
+
+\end_inset
+
+ provides a brief conclusion and recommendations that were observed and
+ experienced for this particular project.
+\end_layout
+
+\begin_layout Section
+Types of Visual Servoing
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Types-of-Visual"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+There are two popular methods of Visual Servoing.
+ They are described in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-Chart-of"
+
+\end_inset
+
+ and described as follows:
+\end_layout
+
+\begin_layout Enumerate
+
+\series bold
+Eye in hand
+\series default
+: When the camera is mounted on end effector
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+The end effector is that part of the robot which interacts with the environment
+ or target or goal.
+ It is referred to the device which is connected to end of the robot arm,
+ where the hand would be.
+\end_layout
+
+\end_inset
+
+ observing the goal.
+ Such configuration is called Eye in hand or end point closed loop.
+ Eye in hand is further divided into two methods 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "nav"
+literal "false"
+
+\end_inset
+
+.
+ They are as follows:
+\end_layout
+
+\begin_deeper
+\begin_layout Enumerate
+Image Based Visual Servoing (IBVS):There is no need to estimate the pose.
+ The control is performed in image space by using image features directly.
+\end_layout
+
+\begin_layout Enumerate
+Position Based Visual Servoing (PBVS): The camera extracts the features
+ of the goal object whose geometric information is already known.
+ The camera has to calibrated precisely for this technique to work.
+ This is computational expensive and is profoundly dependent on camera calibrati
+on accuracy and the model of the object’s geometry.
+\end_layout
+
+\end_deeper
+\begin_layout Enumerate
+
+\series bold
+Eye to hand
+\series default
+: When the camera is fixed on fixed point in the World frame and is observing
+ the goal as well as end effector.
+ Such configuration is called Eye in hand or end point open loop.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename flow1.PNG
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-Chart-of"
+
+\end_inset
+
+Flow Chart of Visual Servoing Techniques
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this project, PBVS was used.
+ The closed loop control flow diagram is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-closed-loop"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pbvs.PNG
+	lyxscale 60
+	scale 80
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-closed-loop"
+
+\end_inset
+
+The closed loop control diagram of PBVS.
+ Here 
+\begin_inset Formula $^{C}\xi_{G}$
+\end_inset
+
+ is the estimated pose and 
+\begin_inset Formula $^{C}\xi_{G}^{*}$
+\end_inset
+
+ is the desired pose of the goal.
+ Image credits: 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "corke2017robotics"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Mathematical Background for PBVS
+\begin_inset CommandInset label
+LatexCommand label
+name "sec:Mathematical-Background-for"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+To estimate the pose of the goal object in PBVS, the camera calibration
+ parameters are supposed to be known.
+ The goal's geometric model is also supposed to be known.The relationships
+ between the poses is demonstrated in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:de"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename math.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:de"
+
+\end_inset
+
+ PBVS relative pose graph.
+ Frame 
+\begin_inset Formula ${C}$
+\end_inset
+
+ is the current camera pose and frame 
+\begin_inset Formula ${C^{∗}}$
+\end_inset
+
+ is the desired camera pose.
+ The terms with 'hat' represent estimated values and terms with 'star' represent
+ desired values.
+ Image Credits : 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "corke2017robotics"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The desired relative pose is specified with respect to the goal 
+\begin_inset Formula $^{C}\xi_{G}^{*}$
+\end_inset
+
+ and we wish to determine the motion 
+\begin_inset Formula $\xi_{\Delta}$
+\end_inset
+
+ required to move the camera from its initial pose 
+\begin_inset Formula $\xi_{C}$
+\end_inset
+
+ to 
+\begin_inset Formula $\xi_{C}^{*}$
+\end_inset
+
+.
+ The actual pose of the goal 
+\begin_inset Formula $\xi_{G}$
+\end_inset
+
+ is not known.
+ The indicated loop of the pose network is 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "corke2017robotics"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\xi_{\Delta}\oplus{}^{c^{*}}\xi_{G}={}^{c}\hat{\xi}_{G}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+where 
+\family roman
+\series medium
+\shape up
+\size normal
+\emph off
+\bar no
+\strikeout off
+\xout off
+\uuline off
+\uwave off
+\noun off
+\color none
+
+\begin_inset Formula $^{c}\hat{\xi}_{G}$
+\end_inset
+
+
+\family default
+\series default
+\shape default
+\size default
+\emph default
+\bar default
+\strikeout default
+\xout default
+\uuline default
+\uwave default
+\noun default
+\color inherit
+ is the estimated pose of the goal relative to the camera.
+ It can be rearranged as:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\xi_{\Delta}={}^{c}\xi_{G}\ominus{}^{c^{*}}\xi_{G}\label{eq:}
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This is the camera motion required to achieve the desired relative pose.The
+ change in pose might be quite large so it is not reasonable to make this
+ movement in one step.
+ So, a point closer to {
+\begin_inset Formula $C^{*}$
+\end_inset
+
+} is moved by:
+\end_layout
+
+\begin_layout Standard
+\begin_inset Formula 
+\begin{equation}
+\xi_{C}\langle k+1\rangle\leftarrow\xi_{C}\langle k\rangle\oplus\lambda\xi_{\Delta}\langle k\rangle
+\end{equation}
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+which is a fraction 
+\begin_inset Formula $λ∈(0,1)$
+\end_inset
+
+ of the translation and rotation required.
+\end_layout
+
+\begin_layout Section
+Robot Operating System
+\end_layout
+
+\begin_layout Standard
+Robotics Operating System (ROS), is a middle ware, low level framework,
+ to write robotic software.
+ It can be considered as an API to make the process of developing a robotic
+ related projects more flexible, and simplified.
+ There will be no need for an extensive knowledge of the hardware in which
+ it saves much effort and time in the development phase.
+ It includes many libraries and tools which connects and control the robot
+ manipulators, handle the communication between multiple devices in a a
+ working space.
+ ROS is supported by many operating systems like Ubuntu, windows.
+ Ubuntu is the more stable operating system working with ROS 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "goebel_2013"
+literal "false"
+
+\end_inset
+
+.
+ However, for the development of this project we are using the construct
+ web platform, which is an online robotics working environment.
+ The platform uses Ubuntu as the main operating system with ROS kinetic
+ and uses the 
+\series bold
+Gazebo
+\series default
+ as real world simulator with many robot model simulations.
+\end_layout
+
+\begin_layout Standard
+The Project is divided into two main tasks.
+ These are as follows:
+\end_layout
+
+\begin_layout Enumerate
+Line following of the Robot
+\end_layout
+
+\begin_layout Enumerate
+Parking of Robot.
+\end_layout
+
+\begin_layout Section
+Types of the Robot used
+\end_layout
+
+\begin_layout Standard
+The different robots were used in this project in order to comprehend and
+ test the robustness of the developed project.
+ These are as follows:
+\end_layout
+
+\begin_layout Subsection
+ROSBot
+\end_layout
+
+\begin_layout Standard
+ROSbot 2.0 is an autonomous, open source robot platform running on Husarion
+ CORE2-ROS controller 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "ros"
+literal "false"
+
+\end_inset
+
+.
+ The ROSBot is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:ROSbot-2.0"
+
+\end_inset
+
+.
+ The robot has following specifications:
+\end_layout
+
+\begin_layout Itemize
+RGBD camera Orbbec Astra
+\end_layout
+
+\begin_layout Itemize
+RPLIDAR A2 laser scanner.
+\end_layout
+
+\begin_layout Itemize
+MPU 9250 inertial sensor (accelerometer + gyro)
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename rosbot2_appearance.jpg
+	lyxscale 21
+	scale 21
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:ROSbot-2.0"
+
+\end_inset
+
+ROSbot 2.0
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Turtlebot3 Waffle
+\end_layout
+
+\begin_layout Standard
+TurtleBot3 Waffle by Robotis is without an doubt a very powerful robot for
+ exploring ROS (Robot Operating System).
+ It has ability to facilitate high payload and is equiped with additional
+ sensors.
+ It is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Turtlebot-3-Waffle"
+
+\end_inset
+
+.
+ The robot has following specifications:
+\end_layout
+
+\begin_layout Itemize
+360° Laser Rangefinder (LiDAR) for mapping, positioning (SLAM) and navigation
+\end_layout
+
+\begin_layout Itemize
+Simple on-board computer (Raspberry Pi 3)
+\end_layout
+
+\begin_layout Itemize
+OpenCR controller (32-bit ARM Cortex M7)
+\end_layout
+
+\begin_layout Itemize
+Lithium polymer battery (Li-Po) 11.1V 1800 mAh
+\end_layout
+
+\begin_layout Itemize
+Raspberry Pi Camera
+\end_layout
+
+\begin_layout Itemize
+Bluetooth module for remote control
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename TB3_Waffle_Main_Components_345x.jpg
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Turtlebot 3 Waffle by Robotis
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Turtlebot-3-Waffle"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Turtlebot 2
+\end_layout
+
+\begin_layout Standard
+TurtleBot 2 is a low-cost, personal robot kit for educational purpose with
+ open-source software.
+ It has following specifications and is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Turtlebot-2"
+
+\end_inset
+
+.
+ It has following specifications:
+\end_layout
+
+\begin_layout Itemize
+Kobuki Base
+\end_layout
+
+\begin_layout Itemize
+Kinect Mounting Hardware
+\end_layout
+
+\begin_layout Itemize
+Asus Xion Pro Live
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename turtlebot2.jpg
+	lyxscale 70
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Turtlebot 2
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Turtlebot-2"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Project Management
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Project-Management"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The project was divided into two main tasks.
+ Line following and parking.
+ A significant amount of time was spent on learning the prerequisites and
+ preparing the basic skills for ROS before starting the project.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-project-timeline"
+
+\end_inset
+
+ shows project timeline.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename project management.PNG
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-project-timeline"
+
+\end_inset
+
+The project timeline depicts the tasks and time spent on these tasks in
+ order to complete the project.
+ The constraint of time was gravely felt.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Constraints and Limitations
+\end_layout
+
+\begin_layout Itemize
+Limited Time.
+\end_layout
+
+\begin_layout Itemize
+System constraints (Lack of Powerful hardware).
+\end_layout
+
+\begin_layout Itemize
+Lack of experience on ROS.
+\end_layout
+
+\begin_layout Itemize
+No access to real physical robots due to COVID-19.
+\end_layout
+
+\begin_layout Itemize
+The unstability of The Construct platform.
+\end_layout
+
+\begin_layout Itemize
+No Classroom or lab experience due to confinment.
+ The lack of guidance and lonliness was felt working in confined spaces.
+\end_layout
+
+\begin_layout Itemize
+Tutorials on ViSP library and documentation was found out to be ambigiuos
+ and at times missing the important information.
+\end_layout
+
+\begin_layout Itemize
+Poor Internet access in Residence made our learning difficult.
+\end_layout
+
+\begin_layout Section
+Resources
+\end_layout
+
+\begin_layout Itemize
+Ubuntu
+\end_layout
+
+\begin_layout Itemize
+Kinect ROS
+\end_layout
+
+\begin_layout Itemize
+Gazebo
+\end_layout
+
+\begin_layout Itemize
+Construct
+\end_layout
+
+\begin_layout Itemize
+OpenCV
+\end_layout
+
+\begin_layout Itemize
+VISP Package
+\end_layout
+
+\begin_layout Itemize
+Ar_track_alvar Package
+\end_layout
+
+\begin_layout Itemize
+Blender for 3D modelling
+\end_layout
+
+\begin_layout Section
+\begin_inset CommandInset href
+LatexCommand href
+name "GitHub Repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since the construct was having some problems with saving the progress, we
+ use Github to manage and write technical review.
+ Due to confinement, Its not appreciated to work toghether everytime, Github
+ provides us great solution of working distantly through its fundamental
+ facility of version control.
+ Meetings among group members were only hold to discuss critical tasks.
+\end_layout
+
+\begin_layout Standard
+The github repository can be found by clicking
+\begin_inset CommandInset href
+LatexCommand href
+name " here"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+.
+ An extensive readme file guides through the tutorials for achieving the
+ project objectives.
+\end_layout
+
+\begin_layout Chapter
+Implementation 
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Implementation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The implementation is the most critical part of the project.
+ Python and C plus plus were used for ROS.
+ Visual servoing has some powerful libraries and packages which help with
+ the visual servoing tasks.
+\end_layout
+
+\begin_layout Standard
+The project has been divided into two main tasks.
+ 
+\series bold
+Line following
+\series default
+ of the robot and 
+\series bold
+parking
+\series default
+ of the robot.
+ In order to implement it, It was quite challenging to write a code compatible
+ with the environment.
+ Enormous issue were felt while working on the online platform and simulation
+ were quite unstable by the host website.
+ Unfortunatley the Visual servoing could not be realized on the physical
+ robots in the robotics lab due to confinement constraints imposed by the
+ government due to COVID-19.
+\end_layout
+
+\begin_layout Section
+Task 1: Line Following of the Robot
+\end_layout
+
+\begin_layout Standard
+The camera was installed on the top of the virtual robot in 'The Construct'
+ platform.
+ The camera takes images and sends it to a topic.
+ The main task identified was to utilize these camera images for running
+ some algorithm to achieve the line following of the robot.
+ The popular package in ROS for doing this task is 
+\series bold
+OpenCV_bridge 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "bipin2018robot"
+literal "false"
+
+\end_inset
+
+.
+ 
+\series default
+This package allows the conversion between ROS Image messages and OpenCV
+ images.
+ The following figure describes the role of the OpenCV_bridge package.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename opencv_package.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+The package OpenCV_bridge converts images to OpenCV format which allows
+ the user to process images for further puposes.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+OpenCV images inherently come in BGR image format, whereas normal ROS images
+ are encoded in standard RGB.
+ Here, It is important to note that OpenCV_bridge provides a nice feature
+ to convert between them and also provides many other privelges that can
+ be utilized with OpenCV.
+\end_layout
+
+\begin_layout Standard
+To get the images from ROS topic and showing them in OpenCV, a new package
+ named as followline was created, with dependency on rospy.
+ Two new folders were also created inside this package.
+ They are named as follows:
+\end_layout
+
+\begin_layout Itemize
+launch
+\end_layout
+
+\begin_layout Itemize
+src
+\end_layout
+
+\begin_layout Standard
+In the src folder, we create a python file named 
+\series bold
+followline.py
+\series default
+.
+ The following command in this script converts the ROS image to OpenCV format.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+cv_image = self.bridge_object.imgmsg_to_cv2
+\end_layout
+
+\begin_layout Plain Layout
+
+			(data, desired_encoding="bgr8")
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The image has been retrieved from a ROS topic and stored in OpenCV variable.
+ The variable data in arguement is the one that contains a ROS message with
+ the image captured by the camera.
+ The map was imported from the Construct platform.
+ We also tried to built up our own Map on Blender software but the construct
+ software was unable to import it.
+ The visuals of the robot initialized in the environment are shown in figure
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:a)-The-robot"
+
+\end_inset
+
+.
+ The map from render is shown in Appendix.
+\end_layout
+
+\begin_layout Standard
+The raw image is useless unless we preprocess it to take out all the useful
+ information and remove/crop the non useful part of the image to make the
+ program work faster.
+ It's important to work with the minimum size of the image required for
+ the task.
+ Note that it is also critical to optimize the region of the image as a
+ result of cropping.
+ If it's too big, too much data will be processed, making program too slow.
+ On the other hand, it has to have enough image to work with.
+ At the end, one has to negotiate between computation and accuracy and find
+ the best.
+\end_layout
+
+\begin_layout Standard
+It is difficult to work in RGB environment, so one way to simplify this
+ problem is to use HSV colour space because HSV removes the component of
+ saturation thus reducing the complexity.
+ The following command converts the colour space.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+hsv = cv2.cvtColor(crop_img, cv2.COLOR_BGR2HSV)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In order to detect the line, the colour has to be selected in HSV space
+ and defined.
+ Since HSV values are hard to generate, it's better to use a color picker
+ tool like ColorZilla to pick the RGB coding of the color to track.
+ In this case, it's the yellow line in the simulated map.
+ Finally, one has to select an upper and lower bound to define the region
+ of the cone base that will be consider as Yellow.
+\end_layout
+
+\begin_layout Standard
+In order to detect the colour, the mask is applied.
+ The mask is nothing but the black and white version of the cropped image.
+ Here the colour to be detected will be shown white and everything else
+ black, thus simplifying the complexity of detection problem.
+ The following command gives us the mask.
+\end_layout
+
+\begin_layout Standard
+\begin_inset listings
+inline false
+status open
+
+\begin_layout Plain Layout
+
+mask = cv2.inRange(hsv, lower_yellow, upper_yellow)
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The arguements lower_yellow and upper_yellow are defined by user and threshold
+ to detect the line.
+\end_layout
+
+\begin_layout Standard
+To manipulate the robot keep following the line, the concept of centroids
+ is used.
+ Centroids, in essence, represent points in space where mass concentrates.
+ This concept when immersed into image means instead of having mass, color
+ is used.
+ The place where there is more of the color that one is looking for is where
+ the centroid is supposed to be.
+ It's the center of mass of the blobs.
+ To calculate centroid in binary black and white image is really easy.
+\end_layout
+
+\begin_layout Standard
+With the information of centroid, the robot is controlled with the propotional
+ control.
+ The idea here is to keep the centroid in the centre of the image.
+ Any error will be removed by applying propotional control to the robot
+ model.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:a)-The-robot"
+
+\end_inset
+
+ demostrates the line following visuals to establish the successful completion
+ of the task.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-preproccesing-applied"
+
+\end_inset
+
+ shows the operations happening behind the successful tracking.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+a) 
+\begin_inset Graphics
+	filename initialize1.PNG
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+ b) 
+\begin_inset Graphics
+	filename initialize2.PNG
+	lyxscale 50
+	scale 27
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+c) 
+\begin_inset Graphics
+	filename initialize3.PNG
+	lyxscale 50
+	scale 30
+
+\end_inset
+
+ d) 
+\begin_inset Graphics
+	filename initialize5.PNG
+	lyxscale 50
+	scale 26
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:a)-The-robot"
+
+\end_inset
+
+a) The robot has been initialized offside to the line.
+ b) The camera visual image from the robot.
+ c) After the robot started to follow line.
+ It can be seen that it is moving towards line.
+ d) The robot has been successfully aligned itself according to the line
+ and it is now following line.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+a) 
+\begin_inset Graphics
+	filename HSV.PNG
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+b) 
+\begin_inset Graphics
+	filename mask.PNG
+	scale 98
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+c) 
+\begin_inset Graphics
+	filename res.PNG
+	scale 92.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-preproccesing-applied"
+
+\end_inset
+
+The preproccesing applied on the images as percieved by robot.
+ The image has been cropped to save the processing time for line following.
+ a) The cropped image in HSV image space.
+ b) The mask of the preprocessing image.
+ c) The RES image related to tracking algorithm.
+ The red ball tries to be between the side lines.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-robot-can"
+
+\end_inset
+
+ shows the robot moving and following the robot.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename linefollowing1.PNG
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-robot-can"
+
+\end_inset
+
+The robot can be seen following the line.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The task 1 of making the robot follow the line has been completed.
+ The code and files are available on the
+\begin_inset CommandInset href
+LatexCommand href
+name " github repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+.
+ The detail videos are also available on github to facilitate further analysis.
+\end_layout
+
+\begin_layout Section
+Task 2: Parking of the Robot
+\end_layout
+
+\begin_layout Standard
+The Parking of the robot is a complicated task which involoves a lot of
+ knowledge and programming skills.
+ The parking task was successfuly completed with third approach after two
+ failed approaches.
+ All of approaches will be described here.
+ The unstability and non-compatibility of The Construct platform was gravely
+ felt.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-summarized-approahes"
+
+\end_inset
+
+ gives the bird eye view of our work on this task.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename f.PNG
+	lyxscale 50
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-summarized-approahes"
+
+\end_inset
+
+The summarized approahes for achieving parking task.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The ROS and Gazebo was downloaded on our local system in desperation to
+ make things work.
+ It put a lot of difficulties for our laptop to run the heavy softwares.
+ Overheating and system collapse were reguraly observed.
+ The approches are explained in detail in the next sections.
+\end_layout
+
+\begin_layout Standard
+In the initial steps, the images from the robot were fetched along with
+ the depth information from the RGB-D camera of the camera.
+ This important data is then processed by library function from either Ar_trac_a
+lvar package or Vision ViSP package 
+\begin_inset CommandInset citation
+LatexCommand cite
+key "goebel_2013"
+literal "false"
+
+\end_inset
+
+.
+ These libraries have functions that help us detect the AR tag or QR code
+ which helps robot guide.
+ The output of the algorithm or Visual servoing task is the velocity of
+ the robot which decides wether robot should keep on moving or should stop.
+\end_layout
+
+\begin_layout Subsection
+Approach 1
+\end_layout
+
+\begin_layout Standard
+The approach 1 uses Ar_trac_alvar package which is one of the most popular
+ package for visual servoing applications.
+ An AR tag was successfuly created but somehow it does not display correcly
+ on map.
+ In order for the robot to park, the robot needs to detect the AR tag but
+ unfortunately the robot could not detect any AR tag whatsoever.
+ We tried quite hard trying to trouble shoot the problem but we failed to
+ make it work.
+ It was concluded and realized that the construct platform has some fundamental
+ limitations.
+ It remains silent on maps, model and their code can not be found to make
+ improvment to analyze map.
+ It was also found that there server has also put some limitations when
+ we were importing or using some extra files.
+ However, this is our honest opinion and observation and we are unaware
+ of the fact.
+ The flowchart shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-Chart-of-1"
+
+\end_inset
+
+ summarizes the approach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ar.PNG
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-Chart-of-1"
+
+\end_inset
+
+Flow Chart of the first failed attempt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Approach 2
+\end_layout
+
+\begin_layout Standard
+With the first approach failed, An attempt was made to use some other package
+ which might be able to work on the Construct platform.
+ ViSP package was found out to be an alternative.
+ In order to complete the task, we created QR code and imported it on the
+ map.
+ The same problem was again faced and the attempt was a mere failure and
+ gave null results.
+ It was now confirmed that the environment has compatibilty issues and in
+ despertion we moved to install ROS and Gazebo on our local machines.
+ The flowchart shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-Chart-of-2"
+
+\end_inset
+
+ summarizes the approach.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ar2.PNG
+	lyxscale 60
+	scale 60
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-Chart-of-2"
+
+\end_inset
+
+Flow Chart of the second failed attempt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Subsection
+Approach 3
+\begin_inset CommandInset label
+LatexCommand label
+name "subsec:Approach-3"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+In this approach the environment was prepared on local machine.
+ The map was uploaded.
+ The QR code was generated and imported on map in ROS.
+ Then the robot was initialized.
+ The ViSP library was used.
+ This package has quite some powerful function which make visual servoing
+ possible and easy.
+ The ViSP function recives the pose
+\begin_inset Foot
+status open
+
+\begin_layout Plain Layout
+Pose information refers to orietation and translation of a n object in the
+ frame of reference
+\end_layout
+
+\end_inset
+
+ information of the goal or target object from the topic.This translationa
+ and rotational information is transformed into homogenous matrix.
+ Since the robot is using RGB-D camera, the robot also has privelge of providing
+ the depth information of the goal or target which in our task is QR code.
+ Finally the control law computes the velocity of the robot and publishes
+ to to the dedicated topic.
+ This velocity determines wheter robot shouls move or stop, accelerate or
+ turn.
+ The flow chart in the figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:Flow-Chart-of-3"
+
+\end_inset
+
+ summarizes the implementation.
+ The code and supporting videos are attached in
+\begin_inset CommandInset href
+LatexCommand href
+name " github repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename ar3.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:Flow-Chart-of-3"
+
+\end_inset
+
+Flow Chart of the third successful attempt
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+Since we are using the Position based Visual Servoing(PBVS) method, the
+ camera intrinsics should be known for PBVS to work as discussed in chapter
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "chap:Introduction"
+
+\end_inset
+
+.
+ The Camera Internal Parameters are found and noted in table 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "tab:Intrinsic-Parametes-of"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float table
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Tabular
+<lyxtabular version="3" rows="5" columns="3">
+<features tabularvalignment="middle">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<column alignment="center" valignment="top">
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Camera Parameters
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Description
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Value in Pixels
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{x}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Focal length in pixels (horizontal)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1206.889772
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $P_{y}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Focal length (vertical)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+1206.889772
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $u_{o}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Optical centre (horizontal)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+960.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+<row>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+\begin_inset Formula $v_{o}$
+\end_inset
+
+
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+Optical centre (vertical)
+\end_layout
+
+\end_inset
+</cell>
+<cell alignment="center" valignment="top" topline="true" bottomline="true" leftline="true" rightline="true" usebox="none">
+\begin_inset Text
+
+\begin_layout Plain Layout
+540.5
+\end_layout
+
+\end_inset
+</cell>
+</row>
+</lyxtabular>
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "tab:Intrinsic-Parametes-of"
+
+\end_inset
+
+Intrinsic Parametes of Turtlebot 3 Waffle
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:a)-The-Turtlebot"
+
+\end_inset
+
+ shows the sucessful demonstration of the parking of robot.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+a)
+\begin_inset Graphics
+	filename waffle1.PNG
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+b)
+\begin_inset Graphics
+	filename waffle2.PNG
+	lyxscale 60
+	scale 70
+
+\end_inset
+
+c) 
+\begin_inset Graphics
+	filename waffle3.PNG
+	lyxscale 30
+	scale 30
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:a)-The-Turtlebot"
+
+\end_inset
+
+a) The Turtlebot 3 Waffle has been imported into map along with QR code,
+ which stands as a signal for parking.
+ b) The robot can be seen approaching the QR code for parking and it stops
+ after the required distance between the robot and QR code has been reached.
+ c) The QR code as seen by robot camera and is being detected by camera.
+ The complete video is available on 
+\begin_inset CommandInset href
+LatexCommand href
+name "github repository."
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Chapter
+Experimentation and Evaluation
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Experimentation-and-Evaluation"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Testing in different Maps
+\end_layout
+
+\begin_layout Standard
+In order to validate and test the line following strategy, different maps
+ were used to realize the robustness of the algorithm.
+ The first map to test the algorithm is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-yellow-line"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename firstmap.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-yellow-line"
+
+\end_inset
+
+The yellow line is the line to be followed.
+ The robot is initialized at the centre on the image, depicted by black
+ dark dot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The video of the robot following the line is available at 
+\begin_inset CommandInset href
+LatexCommand href
+name "github repository"
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+.
+ Some of snaps to establish the successful following of line in this map
+ is shown in figure.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+a) 
+\begin_inset Graphics
+	filename star1.PNG
+	lyxscale 53
+	scale 53
+
+\end_inset
+
+ b) 
+\begin_inset Graphics
+	filename star2.PNG
+	lyxscale 55
+	scale 55
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+c) 
+\begin_inset Graphics
+	filename star5.PNG
+	lyxscale 50
+	scale 50
+
+\end_inset
+
+d) 
+\begin_inset Graphics
+	filename star3.PNG
+	lyxscale 42
+	scale 42
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+Snaps of robot following the line.
+ a) The robot has been initialized.
+ b) The robot has succussfully started to follow the line.
+ c) The robot continues to follow the line.
+ d) The images captured by camera mounted on robot.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Testing with different Robots
+\end_layout
+
+\begin_layout Standard
+In order to check the robustness of the algorithm, Different robots were
+ used for parking task.
+ The result was successful.
+ The figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:The-succesful-demonstration"
+
+\end_inset
+
+ shows Task 2 with rosbot.
+ The Turtlebot 3 waffle test has been mentioned and demonestrated in section
+ 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "subsec:Approach-3"
+
+\end_inset
+
+.
+ The detalied videos are available on
+\begin_inset CommandInset href
+LatexCommand href
+name " github."
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+a) 
+\begin_inset Graphics
+	filename vp1a.PNG
+	lyxscale 70
+	scale 70
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename vp1b.PNG
+	lyxscale 37
+	scale 37
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+b) 
+\begin_inset Graphics
+	filename vp1c.PNG
+	lyxscale 65
+	scale 65
+
+\end_inset
+
+ 
+\begin_inset Graphics
+	filename vp1cdetected.PNG
+	lyxscale 37
+	scale 37
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+c) 
+\begin_inset Graphics
+	filename vp1final.PNG
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+d) 
+\begin_inset Graphics
+	filename vp1programstopped.PNG
+	lyxscale 40
+	scale 40
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:The-succesful-demonstration"
+
+\end_inset
+
+The succesful demonstration of RosBot doing parking task.
+ a) The robot has been initialized, QR ode has been imported in the map.
+ The right figure shows the image captured by robot.
+ b) The robot can be successfully seen making its way to the QR code for
+ parking.
+ The QR code can be seen detected.
+ c) The robot approaching parking and about to stop d) The robot has stopped
+ and with threshold of distance achieved, algorithm has stopped working.
+ The detail video can be found at
+\begin_inset CommandInset href
+LatexCommand href
+name " github repository."
+target "https://github.com/MahBadran93/VisualServoingProject"
+literal "false"
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Section
+Creating and designing map
+\end_layout
+
+\begin_layout Standard
+In order to explore further and push our limits, we decided to create our
+ own map.
+ For this matter, a software called blender was found out to be useful.
+ Blender is a free and open-source 3D computer graphics software tool set
+ used for creating 3D printed models, animated films, visual effects, motion
+ graphics, interactive 3D applications, virtual reality, art and computer
+ games.
+ The map designed on Blender is shown in figure 
+\begin_inset CommandInset ref
+LatexCommand ref
+reference "fig:a)-The-figure"
+
+\end_inset
+
+.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+a) 
+\begin_inset Graphics
+	filename blendermap.png
+	lyxscale 30
+	scale 33.5
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+\align center
+b) 
+\begin_inset Graphics
+	filename blender2.png
+	lyxscale 30
+	scale 34
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+\begin_inset CommandInset label
+LatexCommand label
+name "fig:a)-The-figure"
+
+\end_inset
+
+a) The figure shows the map created on Blender.
+ The line supposed to be followed is the red line.
+ The QR code has been also added.
+ b) The figure depicts the adding procedure of QR code in order to facilitate
+ task 2.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The QR tag was also added in the map to facilitate the second task.
+ Unfortunately the map could not be imported to Construct because of limitation
+ of the Construct platform and all of handwork in designing and learning
+ this software went in vain.
+ The Construct expressed a lot of compatibility issues.
+\end_layout
+
+\begin_layout Section
+Summary
+\end_layout
+
+\begin_layout Standard
+In order to evaluate the performance of the project, A number of experiments
+ were run for both the tasks, Line following and Parking of the Robot.
+ Different Initialization, Illumination conditions in map, maps and robots
+ were used to evaluate the experiments.
+ The following pie charts in figure shows the success rate of both experiments.
+\end_layout
+
+\begin_layout Standard
+\begin_inset Float figure
+wide false
+sideways false
+status open
+
+\begin_layout Plain Layout
+\align center
+\begin_inset Graphics
+	filename pie1.PNG
+	scale 70
+
+\end_inset
+
+
+\begin_inset Graphics
+	filename pie2.PNG
+	scale 70
+
+\end_inset
+
+
+\begin_inset Caption Standard
+
+\begin_layout Plain Layout
+A series of 7 experiments were run for task 1.
+ In most cases the robot was able to detect and follow the line.
+ For task 2, 8 experiments were run, the failure rate was little high.
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Plain Layout
+
+\end_layout
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+The reason for the failure in task 1 was mostly illumination conditions,
+ change in color of the line.
+ The reason for some maps being sometimes not compatible also fails the
+ experiment.
+ For task 2, it was observed that the main reason for the failure was not
+ being able to detect QR code at far distance from the robot.
+ The map imported on local machine also was incomplete.
+ Sometimes the robot will fall into void and go missing suddenly and the
+ experiment will fail
+\end_layout
+
+\begin_layout Chapter
+Conclusion and Recommendations 
+\begin_inset CommandInset label
+LatexCommand label
+name "chap:Conclusion-and-Reccomendations"
+
+\end_inset
+
+
+\end_layout
+
+\begin_layout Standard
+This report provides a brief solution in the form of simulation for the
+ Visual Servoing problem of Robot in an simulated environment.
+ The simulation was run on Gazebo in 'The Construct' and also on the local
+ system.
+ The project is divided into two main tasks which are line following and
+ parking of Robot.
+ The three most important and useful packages used for this specific project
+ are Visual VISP(Visual Servoing Platform), Ar_track_alvar and OpenCV_bridge.
+ These packages are fundamental to Visual Servoing.
+ Multiple Maps were tested provided by 'The Construct' in multiple courses
+ and also an attempt was done to use our own designed map which was designed
+ on Blender Software.
+ The Construct courses were helpful and guiding in understanding the problem
+ and implementing the solution.
+ With the evidence of working simulations and visualizations, we are confident
+ that if we apply our algorithm and code on the real robot, we will be successfu
+l in Visual Servoing the robot.
+ We are also confident in integrating different ROS concepts and packages
+ on Robots for Visual Servoing.
+ However, we solemnly hereby do not claim that our solution is efficient,
+ optimized or validated by practical experimentation or expert.
+ We are open to any new ideas and we intend to learn, relish making mistakes
+ and gain expertise in Robotics.
+\end_layout
+
+\begin_layout Standard
+We are convinced that ROS is a very powerful tool in robotics however it
+ is not easy to gain expertise.
+ It is a universe of information in itself.
+ We felt a lot of pressure for our tight schedules and the constraint of
+ timing was felt gravely.
+ We tried our best to practice and learn and what we have is a birds eye
+ view of ROS and Visual Servoing.
+ The Construct is a good platform and it makes learning of ROS quite smooth
+ and efficient.
+ However, it has some fundamental issues that make it less compatible.
+ The Construct has stability issues.
+ It is slow and sometimes it crashes.
+ It is unstable, not trust-able regarding the privilege of saving progress.
+ The Construct consumes a lot of Data and it is very difficult to use it
+ on limited internet packages.
+ We recommend them that there is a lot of room for improvement in computation
+ and stability of website.
+ We also recommend that the Visual Servoing project be done in the succeeding
+ semester after ROS Robotic project.
+ Since ROS is pre-requisite for this particular Visual Servoing project,
+ we felt a lot of inconvenience, pressure, project management issues which
+ adversly affected our performances dealing with both projects in the same
+ semester.
+\end_layout
+
+\begin_layout Standard
+Due to COVID-19, we are working from home and do not have any access to
+ real robots and we understand that.
+ But, It is certain that we might not be able to gain expertise in working
+ with real robots and we will surely miss that opportunity.
+\end_layout
+
+\begin_layout Standard
+\begin_inset CommandInset bibtex
+LatexCommand bibtex
+btprint "btPrintCited"
+bibfiles "RefrencesDatabase"
+options "plain"
+
+\end_inset
+
+
+\end_layout
+
+\end_body
+\end_document
